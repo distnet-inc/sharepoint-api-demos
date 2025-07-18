@@ -30,7 +30,7 @@ Ces scripts ne sont qu’un exemple d’interaction avec SharePoint. D’autres 
 
 1. **Établir une connexion sécurisée à Microsoft Graph**
 
-   Les autorisations configurées pour accéder à l’API sont de type "Application", ce qui permet d’exécuter des actions sans interaction utilisateur. Cela nécessite un certificat valide pour l'authentification.
+   Les autorisations configurées pour accéder à l’API sont de type "app-only", ce qui permet d’exécuter des actions sans interaction utilisateur. Cela nécessite un certificat valide pour l'authentification.
 
 2. **Résoudre le site SharePoint qui vous a été attribué**
 

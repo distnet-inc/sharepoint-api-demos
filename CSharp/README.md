@@ -30,12 +30,12 @@ Pour authentifier l'application sans interaction manuelle (authentification "app
 ## :gear: Configuration
 Avant de lancer le code, vous devez remplir les valeurs suivantes :
 
-```powershell
+```csharp
   string tenantId = "{TenantID}";
   string clientId = "{ClientId}";
   string certificateThumbprint = "{Thumbprint du certificat}";
   string siteHostname = "{Adresse SharePoint}";
-  string sitePath = "{Nom du site Sharepoint}"; // Nom du site Sharepoint (celui qu'on retrouve dans l'URL)
+  string siteName = "{Nom du site Sharepoint}"; // Nom du site Sharepoint (celui qu'on retrouve dans l'URL)
   string libraryName = "{Nom de la librairie}"; // Le DisplayName de la librairie Sharepoint (Par défaut "Rapports")
   string reportDate = "{Date du rapport sous format yyyy-MM-dd}"; // Exemple: "2025-07-17"
   string outputFolder = @"C:\Temp";
@@ -62,7 +62,7 @@ Avant de lancer le code, vous devez remplir les valeurs suivantes :
 
 2. **Connexion à Microsoft Graph**
    
-   Le code utilise ClientCertificateCredential avec le certificat pour s’authentifier :
+   Le code utilise `ClientCertificateCredential` avec le certificat pour s’authentifier :
    ```csharp
     var authProvider = new ClientCertificateCredential(tenantId, clientId, cert);
     var graphClient = new GraphServiceClient(authProvider);
@@ -123,9 +123,11 @@ Avant de lancer le code, vous devez remplir les valeurs suivantes :
        .Items[itemId]
        .Content
        .GetAsync();
+     
+    using (var fileStream = File.Create(outPath))
+        await stream.CopyToAsync(fileStream);
    ```
 
-   > [!TIP] 
    > Pour récupérer le type de rapport, vous pouvez y accéder par
    > ```csharp
    >  (string)item.Fields.AdditionalData["ReportType"];

@@ -92,7 +92,6 @@ Avant de lancer le script, vous devez remplir les valeurs suivantes :
      Get-MgDriveItemContent -DriveId $driveId -DriveItemId $itemId -OutFile $outPath
    ```
 
-   > [!TIP] 
    > Pour récupérer le type de rapport, vous pouvez y accéder par
    > ```powershell
    >  $file.Fields.AdditionalProperties["ReportType"]
